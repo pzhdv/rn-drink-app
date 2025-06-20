@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { router, useLocalSearchParams } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import Colors from '@/constants/Colors'
 
@@ -75,7 +76,7 @@ export default function RegisterScreen() {
   return (
     <SafeAreaView style={styles.safeAreaWrapper}>
       <LeftArrowButton />
-      <View style={styles.container}>
+      <KeyboardAwareScrollView scrollEnabled={false} style={styles.container}>
         <CustomText fontFamily="Semibold" style={styles.title}>
           {titleText}
         </CustomText>
@@ -114,7 +115,7 @@ export default function RegisterScreen() {
             下一步
           </BigButton>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   )
 }

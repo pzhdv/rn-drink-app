@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontFamily: 'PingFang-SC-Regular',
     fontSize: 14,
-    fontWeight: '400',
     color: Colors.text.primary,
   },
 
@@ -93,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
+    paddingVertical: 12,
     backgroundColor: Colors.input.bg,
     borderRadius: 8,
     height: 48,
@@ -100,9 +100,9 @@ const styles = StyleSheet.create({
 
   inputStyle: {
     flex: 1,
-    paddingVertical: 12,
     color: Colors.text.primary,
     fontSize: 16,
+    fontFamily: 'PingFang-SC-Regular',
   },
 })
 export default MyPasswordInput

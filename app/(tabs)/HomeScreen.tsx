@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   ActivityIndicator,
   FlatList,
@@ -32,7 +32,11 @@ export default function HomeScreen() {
   const [newProductList, setNewProductList] = useState<NewProductType[]>([]) // 新品推荐列表
   const [hotProductList, setHotProductList] = useState<ProductType[]>([]) // 热门推荐列表
   const [hasMore, setHasMore] = useState(true)
-
+  // 是否开启下拉刷新 上拉加载
+  const scrollEnabled = useMemo(
+    () => hotProductList.length > 5,
+    [hotProductList],
+  )
   const { paddingTop } = useSafeAreaStyle()
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export default function HomeScreen() {
     setHotProductList(getHomeHotProductList())
     setTimeout(() => {
       setInitLoading(false)
-    }, 3000)
+    }, 300)
   }, [])
 
   // 下拉刷新
@@ -72,6 +76,7 @@ export default function HomeScreen() {
     <View style={[{ paddingTop }, styles.container]}>
       <FlatList
         style={{ paddingTop: 4 }}
+        scrollEnabled={scrollEnabled} // 是否开启滚动
         showsHorizontalScrollIndicator={false} // 显示水平滚动条
         showsVerticalScrollIndicator={false} // 显示垂直滚动条
         ListHeaderComponent={

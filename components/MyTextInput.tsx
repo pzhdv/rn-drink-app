@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   inputStyle: {
-    height: '100%',
     color: Colors.text.primary,
     fontSize: 16,
+    flex: 1,
   },
 })
 export default MyTextInput

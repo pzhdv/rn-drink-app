@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
+// 点击输入框以外区域 隐藏键盘
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import Colors from '@/constants/Colors'
 
@@ -143,7 +145,7 @@ export default function LoginScreen() {
   }
   return (
     <SafeAreaView style={styles.safeAreaWrapper}>
-      <View style={styles.container}>
+      <KeyboardAwareScrollView scrollEnabled={false} style={styles.container}>
         <CustomText fontFamily="Semibold" style={styles.title}>
           {titleText}
         </CustomText>
@@ -183,7 +185,7 @@ export default function LoginScreen() {
         </View>
         {/* 第三方登录 */}
         <ThirdPartyLogin />
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   )
 }

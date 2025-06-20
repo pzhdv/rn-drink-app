@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "32731475",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "737968",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "927758",
+      "name": "ico-left-arrow",
+      "font_class": "ico-left-arrow",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "1304875",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "1487626",
+      "name": "微信支付",
+      "font_class": "weixinzhifu",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "18556273",
+      "name": "支付包支付-01",
+      "font_class": "zhifubaozhifu-01",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "9495509",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
       "icon_id": "26775155",
       "name": "加载中",
       "font_class": "jiazaizhong",
@@ -25,13 +74,6 @@
       "font_class": "yanjing_xianshi",
       "unicode": "eb46",
       "unicode_decimal": 60230
-    },
-    {
-      "icon_id": "663433",
-      "name": "left",
-      "font_class": "i-left",
-      "unicode": "e627",
-      "unicode_decimal": 58919
     },
     {
       "icon_id": "797086",

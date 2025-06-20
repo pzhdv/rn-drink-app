@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont'; /* Project id 4639331 */
   src:
-    url('iconfont.woff2?t=1722774290937') format('woff2'),
-    url('iconfont.woff?t=1722774290937') format('woff'),
-    url('iconfont.ttf?t=1722774290937') format('truetype');
+    url('iconfont.woff2?t=1750415946249') format('woff2'),
+    url('iconfont.woff?t=1750415946249') format('woff'),
+    url('iconfont.ttf?t=1750415946249') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shanchu:before {
+  content: '\e74a';
+}
+
+.icon-jia:before {
+  content: '\e632';
+}
+
+.icon-ico-left-arrow:before {
+  content: '\e66f';
+}
+
+.icon-jian:before {
+  content: '\e620';
+}
+
+.icon-weixinzhifu:before {
+  content: '\e639';
+}
+
+.icon-zhifubaozhifu-01:before {
+  content: '\e610';
+}
+
+.icon-gouwuche:before {
+  content: '\e62b';
 }
 
 .icon-jiazaizhong:before {
@@ -24,10 +52,6 @@
 
 .icon-yanjing_xianshi:before {
   content: '\eb46';
-}
-
-.icon-i-left:before {
-  content: '\e627';
 }
 
 .icon-caidan:before {

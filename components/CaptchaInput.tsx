@@ -157,9 +157,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputStyle: {
-    height: '100%',
     color: Colors.text.primary,
     fontSize: 16,
+    fontFamily: 'PingFang-SC-Regular',
+    flex: 1,
   },
   linkBtnWrapper: {
     height: '100%',

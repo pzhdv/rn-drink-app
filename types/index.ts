@@ -1,3 +1,8 @@
+type TagType = {
+  tagId: number
+  tagName: string
+}
+
 // 登录link页面操作类型
 export type OperationType = 'findPassword' | 'register'
 /**
@@ -100,4 +105,21 @@ export type ProductImageType = {
    * 图片宽度
    */
   imageWidth: number
+}
+
+/**
+ * 布局类型
+ */
+export type SectionLayout = {
+  categoryId: number
+  offset: number
+  height: number
+}
+
+/**
+ * 分类类型
+ */
+export type CategoryType = {
+  categoryId: number
+  categoryName: string
 }

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height: 14,
     width: 14,
     borderRadius: 7,
-    backgroundColor: Colors.orange,
+    backgroundColor: Colors.fieryOrange,
     position: 'absolute',
     borderStyle: 'solid',
     alignItems: 'center',

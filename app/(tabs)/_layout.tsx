@@ -44,7 +44,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="MembershipCardScreen"
+        name="CartScreen"
         options={{
           title: '自由卡',
           tabBarIcon: ({ color }) => (

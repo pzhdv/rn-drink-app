@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function MembershipCardScreen() {
+export default function CartScreen() {
   return (
     <View>
       <Text>MembershipCardScreen</Text>

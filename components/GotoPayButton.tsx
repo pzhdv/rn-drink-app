@@ -1,0 +1,250 @@
+import React, { useEffect, useState } from 'react'
+import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Button, CheckBox } from '@rneui/themed'
+
+import { ProductType } from '@/types'
+
+import Colors from '@/constants/Colors'
+
+import { getCartProductList } from '@/api/TempData'
+
+import CustomText from './CustomText'
+import CartSummary from './CartSummary'
+import IconFont from './IconFont'
+import ProductImage from './ProductImage'
+
+// 去结算组件
+const GotoPayButton = () => {
+  const [showCart, setShowCart] = useState(true)
+  const [checkAll, setCheckAll] = useState(true)
+  const [cartProductList, setCartProductList] = useState<ProductType[]>([]) // 热门推荐列表
+  // 显示购物袋商品列表
+  const handleCheckAll = () => {
+    setCheckAll(pre => !pre)
+  }
+
+  useEffect(() => {
+    setCartProductList(getCartProductList())
+  }, [])
+
+  if (!showCart) {
+    return (
+      <View style={[styles.mask]}>
+        <CartSummary onShowCart={() => setShowCart(true)} />
+      </View>
+    )
+  }
+  return (
+    <View
+      style={[
+        styles.mask,
+        { paddingBottom: 0, backgroundColor: 'rgba(0,0,0,0.6)' },
+      ]}
+    >
+      <View style={styles.cartContainer}>
+        <View style={styles.cartHeaderContainer}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <CheckBox
+              containerStyle={{ padding: 0 }}
+              wrapperStyle={{ backgroundColor: 'red' }}
+              size={24}
+              checked={checkAll}
+              onPress={handleCheckAll}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+            />
+            <CustomText style={styles.selectCountText}>
+              已选购商品（2件）
+            </CustomText>
+          </View>
+          <Button type="clear" style={{ flexDirection: 'row', gap: 2 }}>
+            <IconFont name="shanchu" size={16} color={Colors.text.mediumGray} />
+            <CustomText style={styles.clearText}>清空购物车</CustomText>
+          </Button>
+        </View>
+        <ScrollView style={styles.cartListContainer}>
+          {cartProductList.map(productItem => (
+            <View style={styles.cartItemWrapper} key={productItem.goodId}>
+              <CheckBox
+                containerStyle={{ padding: 0 }}
+                size={24}
+                checked={checkAll}
+                onPress={handleCheckAll}
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+              />
+              <View style={styles.goodItemWrapper}>
+                <ProductImage
+                  imgUrl={productItem.goodImgUrl}
+                  wrapperHeight={80}
+                  wrapperWidth={80}
+                  wrapperBorderRadius={6}
+                  imageWidth={56}
+                  imageHeight={76}
+                />
+                <View style={styles.goodInfoWrapper}>
+                  <CustomText fontFamily="Medium" style={styles.titleText}>
+                    {productItem.goodName}
+                  </CustomText>
+                  <CustomText style={styles.specText}>
+                    大杯/去冰/半塘
+                  </CustomText>
+
+                  <View style={styles.moneyContainer}>
+                    <CustomText fontFamily="Medium" style={styles.currencyText}>
+                      ￥
+                    </CustomText>
+                    <CustomText fontFamily="Medium" style={styles.moneyText}>
+                      {productItem.goodPrice}
+                    </CustomText>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: Colors.ultralightGray,
+                    backgroundColor: Colors.white,
+                    borderRadius: '50%',
+                  }}
+                >
+                  <IconFont
+                    name="jian"
+                    size={16}
+                    color={Colors.text.mediumGray}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: Colors.ultralightGray,
+                    backgroundColor: Colors.text.link,
+                    borderRadius: '50%',
+                  }}
+                >
+                  <IconFont
+                    name="jia"
+                    size={16}
+                    color={Colors.text.mediumGray}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+        <View style={styles.cartFooterContainer}>
+          <CartSummary onShowCart={() => setShowCart(false)} />
+        </View>
+      </View>
+    </View>
+  )
+}
+
+export default GotoPayButton
+
+const styles = StyleSheet.create({
+  mask: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingBottom: 10,
+    justifyContent: 'flex-end',
+  },
+
+  cartContainer: {
+    backgroundColor: Colors.white,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    overflow: 'hidden',
+    paddingBottom: 10,
+  },
+  cartHeaderContainer: {
+    height: 55,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: Colors.ultralightGray,
+    borderBottomWidth: 0.5,
+  },
+  selectCountText: {
+    fontSize: 14,
+    color: Colors.text.primary,
+  },
+  clearText: {
+    fontSize: 12,
+    color: Colors.text.mediumGray,
+  },
+  cartListContainer: {
+    paddingHorizontal: 15,
+
+    marginTop: 5.5,
+    maxHeight: 400,
+  },
+  cartItemWrapper: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cartFooterContainer: {
+    marginTop: 20,
+  },
+
+  goodItemWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 15,
+  },
+  imageWrapper: {
+    backgroundColor: Colors.mintyGray,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    width: 105,
+    height: 105,
+  },
+  goodInfoWrapper: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  titleText: {
+    color: Colors.text.primary,
+    fontSize: 14,
+  },
+
+  specText: {
+    color: Colors.text.lightGray,
+    fontSize: 12,
+  },
+  moneyContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  currencyText: {
+    color: Colors.text.primary,
+    fontSize: 12,
+    marginRight: 2,
+  },
+  moneyText: {
+    fontSize: 16,
+    color: Colors.text.primary,
+  },
+})

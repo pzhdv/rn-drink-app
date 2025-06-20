@@ -16,6 +16,8 @@ export default function Index() {
   if (!user) {
     return <Redirect href="/LoginScreen" />
   } else {
-    return <Redirect href="/HomeScreen" />
+    // return <Redirect href="/HomeScreen" />
+    return <Redirect href="/MenuScreen" />
+    // return <Redirect href="/ProductSearch" />
   }
 }

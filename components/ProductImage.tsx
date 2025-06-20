@@ -31,7 +31,7 @@ export default ProductImage
 
 const styles = StyleSheet.create({
   imageWrapper: {
-    backgroundColor: Colors.productImgBg,
+    backgroundColor: Colors.mintyGray,
     alignItems: 'center',
     justifyContent: 'flex-end',
   },

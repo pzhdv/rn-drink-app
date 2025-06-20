@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   goodNameText: {
-    color: Colors.text.xptj,
+    color: Colors.text.mediumGray,
     fontSize: 12,
     marginTop: 10,
   },

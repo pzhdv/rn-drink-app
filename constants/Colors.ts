@@ -3,17 +3,17 @@
  */
 const Colors = {
   white: '#fff',
-  productImgBg: '#F0F5F4', // 商品图片背景色
-  tagBg: '#F7F7F7', // 猜你喜欢 tag背景色
-  orange: '#FE5509',
+  mintyGray: '#F0F5F4', // 浅青灰色
+  ultralightGray: '#F7F7F7', // 极浅灰色
+  fieryOrange: '#FE5509', // 橙红色
   // 文本颜色相关
   text: {
     primary: '#121212', // 主要文本颜色，比如标题等重要文本
     secondary: '#A6A6A6', // 次要文本颜色，像提示性文字等
+    mediumGray: '#606266', // 中灰
+    lightGray: '#909399', //浅灰
     link: '#2B9F93', // 链接类文本颜色，如“忘记密码”“免密码登录”这类可点击文本
     error: 'red',
-    xptj: '#606266', // 新品推荐
-    tag: '#909399', //猜你喜欢 tag 字体色
   },
 
   // 输入框相关颜色
