@@ -1,29 +1,46 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { useEffect } from 'react'
+import { Stack } from 'expo-router'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { AuthProvider } from '@/contexts/AuthContext'
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const [loaded, error] = useFonts({
+    // 字体名称 字体文件路径
+    'PingFang-SC-Semibold': require('@/assets/fonts/base/PingFangSC-Semibold.ttf'),
+    'PingFang-SC-Regular': require('@/assets/fonts/base/PingFangSC-Regular.ttf'),
+    'PingFang-SC-Medium': require('@/assets/fonts/base/PingFangSC-Medium.ttf'),
+    Iconfont: require('@/assets/fonts/iconfont/iconfont.ttf'), //导入Icon字体
+  })
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
+  useEffect(() => {
+    SplashScreen.preventAutoHideAsync() // 防止启动屏自动隐藏
+  }, [])
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync() // 字体加载完成后隐藏启动屏
+    } else if (error) {
+      console.error('字体加载失败:', error)
+      SplashScreen.hideAsync() // 可选：即使加载失败，也可以隐藏启动屏
+    }
+  }, [loaded, error])
+
+  if (!loaded && !error) {
+    return null // 字体加载中，返回 null 防止渲染
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+    <SafeAreaProvider>
+      <AuthProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        ></Stack>
+      </AuthProvider>
+    </SafeAreaProvider>
+  )
 }
