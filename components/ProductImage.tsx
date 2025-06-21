@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
 
 import Colors from '@/constants/Colors'
 
@@ -7,7 +8,15 @@ import { ProductImageType } from '@/types'
 
 const ProductImage: FC<ProductImageType> = props => {
   return (
-    <View
+    <LinearGradient
+      colors={[
+        Colors.mintyGray,
+        Colors.mintyGray,
+        '#FDFDFD',
+        '#F6F6F6',
+        '#F2F2F2',
+      ]} // 从上到下的渐变颜色
+      locations={[0, 0.6, 0.7, 0.8, 1]} // 定义颜色位置数组
       style={[
         styles.imageWrapper,
         {
@@ -23,7 +32,7 @@ const ProductImage: FC<ProductImageType> = props => {
           uri: props.imgUrl,
         }}
       />
-    </View>
+    </LinearGradient>
   )
 }
 
@@ -31,8 +40,8 @@ export default ProductImage
 
 const styles = StyleSheet.create({
   imageWrapper: {
-    backgroundColor: Colors.mintyGray,
     alignItems: 'center',
     justifyContent: 'flex-end',
+    overflow: 'hidden',
   },
 })

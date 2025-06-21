@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
-import { Button, CheckBox } from '@rneui/themed'
+import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native'
 
 import { useCart } from '@/contexts/CartContext'
 
@@ -15,6 +14,7 @@ import CartSummary from './CartSummary'
 import IconFont from './IconFont'
 import ProductImage from './ProductImage'
 import ByCount from './ByCount'
+import CustomRadio from './CustomRadio'
 
 // 去结算组件
 const GotoPayButton = () => {
@@ -49,22 +49,19 @@ const GotoPayButton = () => {
               alignItems: 'center',
             }}
           >
-            <CheckBox
-              containerStyle={{ padding: 0 }}
-              size={24}
+            <CustomRadio
               checked={checkAll}
               onPress={handleCheckAll}
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
+              style={{ marginRight: 10 }}
             />
             <CustomText style={styles.selectCountText}>
               已选购商品（2件）
             </CustomText>
           </View>
-          <Button type="clear" style={{ flexDirection: 'row', gap: 2 }}>
+          <TouchableOpacity style={{ flexDirection: 'row', gap: 2 }}>
             <IconFont name="shanchu" size={16} color={Colors.text.mediumGray} />
             <CustomText style={styles.clearText}>清空购物车</CustomText>
-          </Button>
+          </TouchableOpacity>
         </View>
         <ScrollView style={styles.cartContentContainer}>
           {cartProductList.map(productItem => (
@@ -74,13 +71,10 @@ const GotoPayButton = () => {
                   justifyContent: 'center',
                 }}
               >
-                <CheckBox
-                  containerStyle={{ padding: 0 }}
-                  size={24}
+                <CustomRadio
                   checked={checkAll}
                   onPress={handleCheckAll}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
+                  style={{ marginRight: 10 }}
                 />
               </View>
               <View style={styles.goodItemWrapper}>
@@ -102,7 +96,7 @@ const GotoPayButton = () => {
 
                   <View style={styles.moneyContainer}>
                     <CustomText fontFamily="Medium" style={styles.currencyText}>
-                      ￥
+                      ¥
                     </CustomText>
                     <CustomText fontFamily="Medium" style={styles.moneyText}>
                       {productItem.goodPrice}
@@ -202,7 +196,7 @@ const styles = StyleSheet.create({
   },
   moneyContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'baseline',
   },
   currencyText: {
     color: Colors.text.primary,

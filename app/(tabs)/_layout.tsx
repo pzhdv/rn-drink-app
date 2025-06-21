@@ -3,8 +3,9 @@ import { Tabs } from 'expo-router'
 
 import IconFont from '@/components/IconFont'
 import GlobalColor from '@/constants/Colors'
+import AddProductToCart from '@/components/AddProductToCart'
 
-export default function TabLayout() {
+function TabLayout() {
   return (
     <Tabs
       screenOptions={{
@@ -62,5 +63,14 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+  )
+}
+
+export default function Index() {
+  return (
+    <>
+      <TabLayout />
+      <AddProductToCart />
+    </>
   )
 }

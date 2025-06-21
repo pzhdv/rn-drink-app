@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, TextProps } from 'react-native'
 
+import Colors from '@/constants/Colors'
+
 type FontType = 'Semibold' | 'Regular' | 'Medium'
 interface IProps extends TextProps {
   /**
@@ -25,7 +27,10 @@ const CustomText: React.FC<IProps> = props => {
   return (
     <Text
       {...props}
-      style={[{ fontFamily: PingFangFont[fontFamily] }, props.style]}
+      style={[
+        { fontFamily: PingFangFont[fontFamily], color: Colors.text.primary },
+        props.style,
+      ]}
     />
   )
 }

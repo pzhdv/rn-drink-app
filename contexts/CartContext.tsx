@@ -10,9 +10,12 @@ import { usePathname } from 'expo-router'
 
 // Context 类型
 type CartContextType = {
+  isShowAddToCart: boolean
   isShowCartList: boolean
   showCartList: () => void
   hideCartList: () => void
+  showAddToCart: () => void
+  hideAddToCart: () => void
 }
 
 // 创建 Context
@@ -21,6 +24,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 // Provider 组件 页面路径变化 隐藏购物车列表展示
 export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isShowCartList, setIsShowCartList] = useState(false)
+  const [isShowAddToCart, setIsShowAddToCart] = useState(false)
   const pathname = usePathname()
   useEffect(() => {
     hideCartList()
@@ -29,9 +33,21 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
   const showCartList = () => setIsShowCartList(true)
   // 隐藏购物车函数
   const hideCartList = () => setIsShowCartList(false)
+
+  // 显示添加购物车函数
+  const showAddToCart = () => setIsShowAddToCart(true)
+  // 隐藏添加购物车函数
+  const hideAddToCart = () => setIsShowAddToCart(false)
   return (
     <CartContext.Provider
-      value={{ isShowCartList, showCartList, hideCartList }}
+      value={{
+        isShowCartList,
+        showCartList,
+        hideCartList,
+        isShowAddToCart,
+        showAddToCart,
+        hideAddToCart,
+      }}
     >
       {children}
     </CartContext.Provider>

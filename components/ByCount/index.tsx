@@ -1,8 +1,10 @@
-import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import ByButton from './ByButton'
-import IconFont from '../IconFont'
+import { View } from 'react-native'
+
 import Colors from '@/constants/Colors'
+
+import IconFont from '../IconFont'
+import ByButton from './ByButton'
 import CustomText from '../CustomText'
 
 const ByCount = () => {
@@ -28,5 +30,3 @@ const ByCount = () => {
 }
 
 export default ByCount
-
-const styles = StyleSheet.create({})
