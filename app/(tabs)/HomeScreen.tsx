@@ -88,7 +88,7 @@ export default function HomeScreen() {
             {/* 新品推荐 */}
             <NewProductRecommend productList={newProductList} />
             <CustomText fontFamily="Medium" style={styles.categoryTitle}>
-              猜你喜欢
+              热门推荐
             </CustomText>
           </>
         }

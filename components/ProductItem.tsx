@@ -28,7 +28,7 @@ const ProductItem: FC<PropsType> = props => {
         <CustomText fontFamily="Medium" style={styles.titleText}>
           {props.good.goodName}
         </CustomText>
-        <View style={[{ flexDirection: 'row' }, styles.tagWrapper]}>
+        <View style={[styles.flexRow, , styles.tagWrapper]}>
           {props.good.tags.map(item => {
             return (
               <CustomText style={styles.tagText} key={item.tagId}>
@@ -41,12 +41,14 @@ const ProductItem: FC<PropsType> = props => {
           好评率 {props.good.goodRate}%
         </CustomText>
         <View style={styles.moneyContainer}>
-          <CustomText fontFamily="Medium" style={styles.currencyText}>
-            ￥
-          </CustomText>
-          <CustomText fontFamily="Medium" style={styles.moneyText}>
-            {props.good.goodPrice}
-          </CustomText>
+          <View style={[styles.flexRow, { gap: 2, alignItems: 'flex-end' }]}>
+            <CustomText fontFamily="Medium" style={styles.currencyText}>
+              ￥
+            </CustomText>
+            <CustomText fontFamily="Medium" style={styles.moneyText}>
+              {props.good.goodPrice}
+            </CustomText>
+          </View>
           <SpecButton buyCount={props.good.buyCount} />
         </View>
       </View>
@@ -57,6 +59,9 @@ const ProductItem: FC<PropsType> = props => {
 export default ProductItem
 
 const styles = StyleSheet.create({
+  flexRow: {
+    flexDirection: 'row',
+  },
   goodItemWrapper: {
     marginTop: 15,
     flexDirection: 'row',

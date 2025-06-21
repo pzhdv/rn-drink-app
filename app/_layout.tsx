@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Stack } from 'expo-router'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { AuthProvider } from '@/contexts/AuthContext'
+import { CartProvider } from '@/contexts/CartContext'
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -35,11 +36,13 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        ></Stack>
+        <CartProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+        </CartProvider>
       </AuthProvider>
     </SafeAreaProvider>
   )

@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
-import { StyleSheet, Image, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import Colors from '@/constants/Colors'
 
 import Round from './Round'
 import CustomText from './CustomText'
+import IconFont from './IconFont'
 
 interface IProps {
   onShowCart: () => void
@@ -35,11 +36,7 @@ const CartSummary: FC<IProps> = props => {
               zIndex: 9,
             }}
           />
-          <Image
-            source={require('@/assets/images/shop-bag.png')}
-            resizeMode="cover"
-            style={{ width: 28, height: 38 }}
-          />
+          <IconFont name="gouwuche1" size={35} color={Colors.text.secondary} />
         </TouchableOpacity>
         <View style={styles.buyInfoWrapper}>
           <View style={styles.priceWrapper}>

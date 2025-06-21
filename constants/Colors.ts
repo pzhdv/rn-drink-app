@@ -6,6 +6,7 @@ const Colors = {
   mintyGray: '#F0F5F4', // 浅青灰色
   ultralightGray: '#F7F7F7', // 极浅灰色
   fieryOrange: '#FE5509', // 橙红色
+  mask: 'rgba(0,0,0,0.6)', // 遮罩层颜色
   // 文本颜色相关
   text: {
     primary: '#121212', // 主要文本颜色，比如标题等重要文本

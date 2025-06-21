@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Button, CheckBox } from '@rneui/themed'
+
+import { useCart } from '@/contexts/CartContext'
 
 import { ProductType } from '@/types'
 
-import Colors from '@/constants/Colors'
-
 import { getCartProductList } from '@/api/TempData'
+
+import Colors from '@/constants/Colors'
 
 import CustomText from './CustomText'
 import CartSummary from './CartSummary'
 import IconFont from './IconFont'
 import ProductImage from './ProductImage'
+import ByCount from './ByCount'
 
 // 去结算组件
 const GotoPayButton = () => {
-  const [showCart, setShowCart] = useState(true)
   const [checkAll, setCheckAll] = useState(true)
   const [cartProductList, setCartProductList] = useState<ProductType[]>([]) // 热门推荐列表
-  // 显示购物袋商品列表
+
+  const { isShowCartList, showCartList, hideCartList } = useCart()
   const handleCheckAll = () => {
     setCheckAll(pre => !pre)
   }
@@ -27,19 +30,16 @@ const GotoPayButton = () => {
     setCartProductList(getCartProductList())
   }, [])
 
-  if (!showCart) {
+  if (!isShowCartList) {
     return (
       <View style={[styles.mask]}>
-        <CartSummary onShowCart={() => setShowCart(true)} />
+        <CartSummary onShowCart={showCartList} />
       </View>
     )
   }
   return (
     <View
-      style={[
-        styles.mask,
-        { paddingBottom: 0, backgroundColor: 'rgba(0,0,0,0.6)' },
-      ]}
+      style={[styles.mask, { paddingBottom: 0, backgroundColor: Colors.mask }]}
     >
       <View style={styles.cartContainer}>
         <View style={styles.cartHeaderContainer}>
@@ -51,7 +51,6 @@ const GotoPayButton = () => {
           >
             <CheckBox
               containerStyle={{ padding: 0 }}
-              wrapperStyle={{ backgroundColor: 'red' }}
               size={24}
               checked={checkAll}
               onPress={handleCheckAll}
@@ -67,17 +66,23 @@ const GotoPayButton = () => {
             <CustomText style={styles.clearText}>清空购物车</CustomText>
           </Button>
         </View>
-        <ScrollView style={styles.cartListContainer}>
+        <ScrollView style={styles.cartContentContainer}>
           {cartProductList.map(productItem => (
             <View style={styles.cartItemWrapper} key={productItem.goodId}>
-              <CheckBox
-                containerStyle={{ padding: 0 }}
-                size={24}
-                checked={checkAll}
-                onPress={handleCheckAll}
-                checkedIcon="dot-circle-o"
-                uncheckedIcon="circle-o"
-              />
+              <View
+                style={{
+                  justifyContent: 'center',
+                }}
+              >
+                <CheckBox
+                  containerStyle={{ padding: 0 }}
+                  size={24}
+                  checked={checkAll}
+                  onPress={handleCheckAll}
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                />
+              </View>
               <View style={styles.goodItemWrapper}>
                 <ProductImage
                   imgUrl={productItem.goodImgUrl}
@@ -105,50 +110,18 @@ const GotoPayButton = () => {
                   </View>
                 </View>
               </View>
-              <View>
-                <TouchableOpacity
-                  style={{
-                    width: 30,
-                    height: 30,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: Colors.ultralightGray,
-                    backgroundColor: Colors.white,
-                    borderRadius: '50%',
-                  }}
-                >
-                  <IconFont
-                    name="jian"
-                    size={16}
-                    color={Colors.text.mediumGray}
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={{
-                    width: 30,
-                    height: 30,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: Colors.ultralightGray,
-                    backgroundColor: Colors.text.link,
-                    borderRadius: '50%',
-                  }}
-                >
-                  <IconFont
-                    name="jia"
-                    size={16}
-                    color={Colors.text.mediumGray}
-                  />
-                </TouchableOpacity>
+              <View
+                style={{
+                  justifyContent: 'flex-end',
+                }}
+              >
+                <ByCount />
               </View>
             </View>
           ))}
         </ScrollView>
         <View style={styles.cartFooterContainer}>
-          <CartSummary onShowCart={() => setShowCart(false)} />
+          <CartSummary onShowCart={hideCartList} />
         </View>
       </View>
     </View>
@@ -172,8 +145,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    overflow: 'hidden',
     paddingBottom: 10,
+    overflow: 'hidden',
   },
   cartHeaderContainer: {
     height: 55,
@@ -192,26 +165,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.text.mediumGray,
   },
-  cartListContainer: {
+  cartContentContainer: {
     paddingHorizontal: 15,
-
     marginTop: 5.5,
     maxHeight: 400,
   },
   cartItemWrapper: {
     marginTop: 20,
     flexDirection: 'row',
-    alignItems: 'center',
   },
-  cartFooterContainer: {
-    marginTop: 20,
-  },
-
   goodItemWrapper: {
     flex: 1,
+    gap: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 15,
   },
   imageWrapper: {
     backgroundColor: Colors.mintyGray,
@@ -229,7 +196,6 @@ const styles = StyleSheet.create({
     color: Colors.text.primary,
     fontSize: 14,
   },
-
   specText: {
     color: Colors.text.lightGray,
     fontSize: 12,
@@ -246,5 +212,8 @@ const styles = StyleSheet.create({
   moneyText: {
     fontSize: 16,
     color: Colors.text.primary,
+  },
+  cartFooterContainer: {
+    marginTop: 20,
   },
 })
