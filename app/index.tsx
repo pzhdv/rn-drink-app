@@ -17,7 +17,7 @@ export default function Index() {
     return <Redirect href="/LoginScreen" />
   } else {
     // return <Redirect href="/HomeScreen" />
-    return <Redirect href="/MenuScreen" />
+    return <Redirect href="/DeliverySuccess" />
     // return <Redirect href="/ProductSearch" />
   }
 }

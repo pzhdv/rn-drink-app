@@ -26,7 +26,7 @@ const scanLeftWidth = (width - scanBoxHeight) / 2
 // 动画的高度
 const animatedHeight = { startHeight: 0, endHeight: scanBoxHeight }
 
-export default function QRcodeScanner() {
+export default function QRcodeScannerScreen() {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null)
   const [scanned, setScanned] = useState(false)
   const safeAreaStyle = useSafeAreaStyle()

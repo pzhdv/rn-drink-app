@@ -13,7 +13,7 @@ import CustomText from '@/components/CustomText'
 import GotoPayButton from '@/components/GotoPayButton'
 import ProductItem from '@/components/ProductItem'
 
-export default function ProductSearch() {
+export default function ProductSearchScreen() {
   const hotSearchList = [
     '粒粒红柚',
     '芒果',

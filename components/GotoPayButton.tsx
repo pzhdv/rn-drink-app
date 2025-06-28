@@ -174,14 +174,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  imageWrapper: {
-    backgroundColor: Colors.mintyGray,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: 105,
-    height: 105,
-  },
   goodInfoWrapper: {
     flex: 1,
     justifyContent: 'space-between',

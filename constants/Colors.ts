@@ -3,6 +3,8 @@
  */
 const Colors = {
   white: '#fff',
+  jungleGreen: '#2B9F93', //丛林绿
+  lightGray: '#D8D8D8', //浅灰色
   mintyGray: '#F0F5F4', // 浅青灰色
   ultralightGray: '#F7F7F7', // 极浅灰色
   fieryOrange: '#FE5509', // 橙红色
@@ -13,6 +15,8 @@ const Colors = {
     secondary: '#A6A6A6', // 次要文本颜色，像提示性文字等
     mediumGray: '#606266', // 中灰
     lightGray: '#909399', //浅灰
+    deepCharcoal: '#303133', //深炭灰
+    glacier: '#909399', //冰川灰
     link: '#2B9F93', // 链接类文本颜色，如“忘记密码”“免密码登录”这类可点击文本
     error: 'red',
   },

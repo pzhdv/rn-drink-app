@@ -2,6 +2,7 @@ import React, { FC, PropsWithChildren } from 'react'
 import {
   StyleProp,
   StyleSheet,
+  TextStyle,
   TouchableOpacity,
   ViewStyle,
 } from 'react-native'
@@ -14,6 +15,7 @@ interface IProps {
   activeOpacity?: number
   disabled?: boolean
   style?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<TextStyle>
   onPress?: () => void
 }
 
@@ -25,7 +27,9 @@ const BigButton: FC<PropsWithChildren<IProps>> = props => {
       disabled={props.disabled}
       onPress={props.onPress}
     >
-      <CustomText style={styles.buttonText}>{props.children}</CustomText>
+      <CustomText style={[styles.buttonText, props.textStyle]}>
+        {props.children}
+      </CustomText>
     </TouchableOpacity>
   )
 }

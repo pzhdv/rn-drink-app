@@ -6,6 +6,7 @@ import Colors from '@/constants/Colors'
 import Round from './Round'
 import CustomText from './CustomText'
 import IconFont from './IconFont'
+import { router } from 'expo-router'
 
 interface IProps {
   onShowCart: () => void
@@ -13,7 +14,9 @@ interface IProps {
 
 const CartSummary: FC<IProps> = props => {
   // 跳转支付页面
-  const goToPayPage = () => {}
+  const goToOrderConfirmScreen = () => {
+    router.push('/OrderConfirm')
+  }
 
   // 显示购物车列表
   const setShowCartList = () => {
@@ -53,7 +56,10 @@ const CartSummary: FC<IProps> = props => {
           </CustomText>
         </View>
       </View>
-      <TouchableOpacity onPress={goToPayPage} style={styles.toPlayBtnWrapper}>
+      <TouchableOpacity
+        onPress={goToOrderConfirmScreen}
+        style={styles.toPlayBtnWrapper}
+      >
         <CustomText fontFamily="Medium" style={styles.payBtnText}>
           去结算
         </CustomText>
